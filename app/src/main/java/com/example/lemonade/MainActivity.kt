@@ -52,7 +52,7 @@ fun LemonadeApp(){
 fun LemonadeImageAndText(modifier: Modifier = Modifier){
     var result by remember { mutableStateOf(1) }
     var click by remember {mutableStateOf(0)}
-    var random = remember {(2..4).random()}
+    var random = (2..4).random()
     when (result) {
         1 -> {
             Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)

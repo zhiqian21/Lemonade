@@ -53,15 +53,15 @@ fun LemonadeImageAndText(modifier: Modifier = Modifier){
     var result by remember { mutableStateOf(1) }
     var click by remember {mutableStateOf(0)}
     var random = remember {(2..4).random()}
-    when (result){
+    when (result) {
         1 -> {
-            Column (modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
+            Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
             {
                 Image(
                     painterResource(id = R.drawable.lemon_tree),
                     contentDescription = "lemon tree image",
                     modifier = Modifier
-                        .clickable {result = 2}
+                        .clickable { result = 2 }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = stringResource(id = R.string.LemonTree))
@@ -69,14 +69,14 @@ fun LemonadeImageAndText(modifier: Modifier = Modifier){
         }
 
         2 -> {
-            Column (modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
+            Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
             {
                 Image(
                     painterResource(id = R.drawable.lemon_squeeze),
                     contentDescription = "lemon image",
                     modifier = Modifier.clickable {
                         click++
-                        if (click >= random) { // Check if random clicks reached
+                        if (click == random) { // Check if random clicks reached
                             result = 3
                             click = 0 // Reset clicks for next image
                         }
@@ -88,12 +88,12 @@ fun LemonadeImageAndText(modifier: Modifier = Modifier){
         }
 
         3 -> {
-            Column (modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
+            Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
             {
                 Image(
                     painterResource(id = R.drawable.lemon_drink),
                     contentDescription = "lemon drink image",
-                    modifier = Modifier.clickable {result = 4}
+                    modifier = Modifier.clickable { result = 4 }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = stringResource(id = R.string.GlassOfLemonade))
@@ -101,17 +101,17 @@ fun LemonadeImageAndText(modifier: Modifier = Modifier){
         }
 
         4 -> {
-            Column (modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
+            Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
             {
                 Image(
                     painterResource(id = R.drawable.lemon_restart),
                     contentDescription = "empty glass image",
-                    modifier = Modifier.clickable {result = 1}
+                    modifier = Modifier.clickable { result = 1 }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = stringResource(id = R.string.EmptyGlass))
             }
         }
-    }
+}
 
 }

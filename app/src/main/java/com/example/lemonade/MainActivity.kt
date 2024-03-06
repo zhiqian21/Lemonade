@@ -49,13 +49,10 @@ fun LemonadeApp(){
 }
 
 @Composable
-fun ClickCounter(clicks: Int, onClick: () -> Unit) {
-
-}
-
-@Composable
 fun LemonadeImageAndText(modifier: Modifier = Modifier){
     var result by remember { mutableStateOf(1) }
+    var click by remember {mutableStateOf(0)}
+    var random = remember {(2..4).random()}
     when (result){
         1 -> {
             Column (modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally)
@@ -77,7 +74,13 @@ fun LemonadeImageAndText(modifier: Modifier = Modifier){
                 Image(
                     painterResource(id = R.drawable.lemon_squeeze),
                     contentDescription = "lemon image",
-                    modifier = Modifier.clickable {result = 3}
+                    modifier = Modifier.clickable {
+                        click++
+                        if (click >= random) { // Check if random clicks reached
+                            result = 3
+                            click = 0 // Reset clicks for next image
+                        }
+                    }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(text = stringResource(id = R.string.Lemon))
